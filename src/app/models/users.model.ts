@@ -1,6 +1,15 @@
 import { model, Schema } from "mongoose";
 import validator from "validator"
-import { IUser } from "../interfaces/user.interface";
+import { IAddress, IUser } from "../interfaces/user.interface";
+
+const addressSchema = new Schema<IAddress>({
+ country: { type: String },
+ city: { type: String },
+ street: { type: String },
+ zip: { type: Number }
+}, {
+ _id: false
+})
 
 const userSchema = new Schema<IUser>({
  firstName: {
@@ -33,6 +42,7 @@ const userSchema = new Schema<IUser>({
   // }
   validate: [validator.isEmail, "Invalid Email {VALUE}"]
  },
+ address: { type: addressSchema },
  password: {
   type: String,
   required: true,

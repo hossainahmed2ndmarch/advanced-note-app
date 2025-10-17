@@ -17,6 +17,11 @@ const noteSchema = new Schema<INote>({
  tags: {
   label: { type: String, required: true },
   color: { type: String, default: "Blue" }
+ },
+ user: {
+  type: Schema.Types.ObjectId,
+  ref: "User",
+  required: true
  }
 },
  {
