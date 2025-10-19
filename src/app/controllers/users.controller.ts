@@ -29,8 +29,8 @@ usersRoutes.post('/create-user', async (req: Request, res: Response) => {
 
  //Built in and custom static method
 
- const password = await User.hashPassword(body.password)
- body.password = password
+ // const password = await User.hashPassword(body.password)
+ // body.password = password
 
  const user = await User.create(body)
 
@@ -83,7 +83,8 @@ usersRoutes.patch('/:userId', async (req: Request, res: Response) => {
 // Delete single user 
 usersRoutes.delete('/:userId', async (req: Request, res: Response) => {
  const userId = req.params.userId
- const deletedUser = await User.findByIdAndDelete(userId)
+ // const deletedUser = await User.findByIdAndDelete(userId)
+ const deletedUser = await User.findOneAndDelete({ _id: userId })
 
  res.status(201).json({
   success: true,
